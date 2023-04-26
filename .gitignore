@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+build
+.env
+assets/*
+secrets/*
+.env
+.env.*
+!.env.example
+/build
+*.db

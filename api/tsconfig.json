@@ -1,0 +1,19 @@
+{
+    "extends": "@tsconfig/recommended/tsconfig.json",
+    "compilerOptions": {
+      /* Visit https://aka.ms/tsconfig.json to read more about this file */
+  
+      /* Basic Options */
+      // "outFile": "./build/app.js",              /* Concatenate and emit output to single file. */
+      "outDir": "build",                        /* Redirect output structure to the directory. */
+      "rootDir": "src",                         /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+  
+      /* Strict Type-Checking Options */
+      "moduleResolution": "node",                /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+      "strictPropertyInitialization": false
+    },
+    "include": [
+      "src/"
+    ]
+  }
+  

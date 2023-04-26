@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+project_name=$(grep COMPOSE_PROJECT_NAME .env | cut -d= -f2)
+port=$(grep PORT .env | cut -d= -f2)
+template_file='nginx/lb.conf.template'
+lb_conf_file='nginx/lb.conf'
+template_file_dev='nginx/lb.dev.conf.template'
+lb_conf_dev_file='nginx/lb.dev.conf'
+
+sed "s/%%%.*%%%/${project_name}_api_1:${port}/g" ${template_file} > ${lb_conf_file}
+sed "s/%%%.*%%%/${project_name}_api_1:${port}/g" ${template_file_dev} > ${lb_conf_dev_file}
