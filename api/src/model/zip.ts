@@ -6,6 +6,10 @@ class Zip {
 
     neighborhood!: string;
 
+    latitude!: number;
+
+    longitude!: number;
+
 }
 
 export default Zip;

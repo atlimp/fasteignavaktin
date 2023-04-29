@@ -18,6 +18,8 @@ class ZipController implements IBaseController {
                 zipCode: Number(x.ZIP),
                 city: x.CITY,
                 neighborhood: x.NEIGHBORHOOD || '',
+                latitude: x.LATITUDE,
+                longitude: x.LONGITUDE,
             } as Zip;
         });
     }
@@ -37,6 +39,8 @@ class ZipController implements IBaseController {
             zipCode: Number(result.ZIP),
             city: result.CITY,
             neighborhood: result.NEIGHBORHOOD || '',
+            latitude: result.LATITUDE,
+            longitude: result.LONGITUDE,
         } as Zip;
     }
 }

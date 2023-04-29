@@ -1,17 +1,17 @@
 // ZIP
-export const GET_ALL_ZIPCODES = 'SELECT ZIP, CITY, NEIGHBORHOOD FROM ZIPCODE';
-export const GET_ZIPCODE = 'SELECT ZIP, CITY, NEIGHBORHOOD FROM ZIPCODE WHERE ZIP = $zip';
+export const GET_ALL_ZIPCODES = 'SELECT ZIP, CITY, NEIGHBORHOOD, LATITUDE, LONGITUDE FROM ZIPCODE';
+export const GET_ZIPCODE = 'SELECT ZIP, CITY, NEIGHBORHOOD, LATITUDE, LONGITUDE FROM ZIPCODE WHERE ZIP = $zip';
 
 // PROPERTIES
 export const GET_PROPERTIES_BY_ZIP = `SELECT 
-                                        ID, ADDRESS, PRICE, ZIP, IMAGE, CREATED, LATITUDE, LONGITUDE
+                                        ID, ADDRESS, PRICE, ZIP, IMAGE, CREATED, LATITUDE, LONGITUDE, SIZE
                                         FROM REALESTATE
                                         WHERE ZIP = $zip
                                         ORDER BY CREATED DESC
                                         LIMIT $limit OFFSET $offset`;
 
 export const GET_PROPERTIES_BY_AREA = `SELECT 
-                                        ID, ADDRESS, PRICE, ZIP, IMAGE, CREATED, LATITUDE, LONGITUDE
+                                        ID, ADDRESS, PRICE, ZIP, IMAGE, CREATED, LATITUDE, LONGITUDE, SIZE
                                         FROM REALESTATE
                                         WHERE LATITUDE <= $latMax AND LATITUDE >= $latMin AND LONGITUDE <= $lonMax AND LONGITUDE >= $lonMin
                                         ORDER BY CREATED DESC
