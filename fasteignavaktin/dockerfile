@@ -1,0 +1,32 @@
+FROM node:18.16-alpine as base
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm i
+
+COPY . .
+
+FROM base as production
+
+# clean install all dependencies
+RUN npm ci
+
+# remove potential security issues
+RUN npm audit fix
+    
+# build SvelteKit app
+RUN npm run build
+
+# copy dependency list
+COPY --from=0 /app/package*.json ./
+
+# clean install dependencies, no devDependencies, no prepare script
+RUN npm ci --production --ignore-scripts
+
+# remove potential security issues
+RUN npm audit fix
+
+# copy built SvelteKit app to /app
+COPY --from=0 /app/build ./

@@ -7,8 +7,5 @@ up-prod:
 down:
 	docker-compose down --remove-orphans
 
-prebuild:
-	./scripts/prebuild
-
-build: prebuild
+build:
 	docker-compose -f docker-compose.yml -f docker-compose.prod.yml build

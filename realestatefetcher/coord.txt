@@ -1,0 +1,56 @@
+realestate-fetcher_1  | No coordinates found for 114: Reykjavík
+realestate-fetcher_1  | No coordinates found for 191: Vogar
+realestate-fetcher_1  | No coordinates found for 206: Kópavogur
+realestate-fetcher_1  | No coordinates found for 241: Grindavík
+realestate-fetcher_1  | No coordinates found for 246: Sandgerði
+realestate-fetcher_1  | No coordinates found for 251: Suðurnesjabær
+realestate-fetcher_1  | No coordinates found for 262: Reykjanesbær
+realestate-fetcher_1  | No coordinates found for 341: Stykkishólmur
+realestate-fetcher_1  | No coordinates found for 342: Stykkishólmur
+realestate-fetcher_1  | No coordinates found for 351: Grundarfjörður
+realestate-fetcher_1  | No coordinates found for 381: Reykhólahreppur
+realestate-fetcher_1  | No coordinates found for 416: Bolungarvík
+realestate-fetcher_1  | No coordinates found for 421: Súðavík
+realestate-fetcher_1  | No coordinates found for 426: Flateyri
+realestate-fetcher_1  | No coordinates found for 431: Suðureyri
+realestate-fetcher_1  | No coordinates found for 461: Tálknafjörður
+realestate-fetcher_1  | No coordinates found for 466: Bíldudalur
+realestate-fetcher_1  | No coordinates found for 511: Hólmavík
+realestate-fetcher_1  | No coordinates found for 546: Skagaströnd
+realestate-fetcher_1  | No coordinates found for 561: Varmahlíð
+realestate-fetcher_1  | No coordinates found for 581: Siglufjörður
+realestate-fetcher_1  | No coordinates found for 604: Akureyri (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 605: Akureyri (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 606: Akureyri (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 607: Akureyri (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 616: Grenivík
+realestate-fetcher_1  | No coordinates found for 626: Ólafsfjörður
+realestate-fetcher_1  | No coordinates found for 676: Raufarhöfn
+realestate-fetcher_1  | No coordinates found for 686: Bakkafjörður
+realestate-fetcher_1  | No coordinates found for 691: Vopnafjörður
+realestate-fetcher_1  | No coordinates found for 711: Seyðisfjörður
+realestate-fetcher_1  | No coordinates found for 721: Borgarfjörður (eystri)
+realestate-fetcher_1  | No coordinates found for 731: Reyðarfjörður
+realestate-fetcher_1  | No coordinates found for 736: Eskifjörður
+realestate-fetcher_1  | No coordinates found for 741: Neskaupstaður
+realestate-fetcher_1  | No coordinates found for 751: Fáskrúðsfjörður
+realestate-fetcher_1  | No coordinates found for 756: Stöðvarfjörður
+realestate-fetcher_1  | No coordinates found for 761: Breiðdalsvík
+realestate-fetcher_1  | No coordinates found for 766: Djúpivogur
+realestate-fetcher_1  | No coordinates found for 803: Selfoss (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 804: Selfoss (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 805: Selfoss (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 806: Selfoss (dreifbýli)
+realestate-fetcher_1  | No coordinates found for 816: Ölfus
+realestate-fetcher_1  | No coordinates found for 846: Flúðir
+realestate-fetcher_1  | No coordinates found for 881: Kirkjubæjarklaustur
+realestate-fetcher_1  | No coordinates found for 1000: Útlönd - Annað
+realestate-fetcher_1  | No coordinates found for 1050: Spánn - Annað
+realestate-fetcher_1  | No coordinates found for 1051: Spánn - Costa Brava
+realestate-fetcher_1  | No coordinates found for 1052: Spánn - Costa Dorada
+realestate-fetcher_1  | No coordinates found for 1053: Spánn - Costa Blanca
+realestate-fetcher_1  | No coordinates found for 1054: Spánn - Costa del Sol
+realestate-fetcher_1  | No coordinates found for 1055: Spánn - Kanaríeyjar
+realestate-fetcher_1  | No coordinates found for 1070: Portúgal - Annað
+realestate-fetcher_1  | No coordinates found for 1071: Portúgal - Algarve
+realestate-fetcher_1  | No coordinates found for 1080: Bandaríkin

@@ -12,7 +12,6 @@ class DatabaseService implements IBaseService {
 
     constructor() {
         this.dbFile = getConfigOrDefault('DB_FILENAME', '');
-        console.log(this.dbFile);
         this.db = new sqlite3.Database(this.dbFile);
     }
 

@@ -1,10 +1,12 @@
 version: '3.7'
 
 services:
-  api:
-    build:
-      target: production
-    command: node ./build/server.js
-  nginx:
-    volumes:
-            - ./nginx/lb.conf:/etc/nginx/conf.d/lb.conf
+    api:
+        build:
+            target: production
+        command: node ./build/server.js
+    fasteignavaktin:
+        build:
+            target: production
+        restart: always
+        command: node ./index.js

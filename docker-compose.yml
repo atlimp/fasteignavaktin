@@ -1,35 +1,42 @@
 version: '3.7'
 
 services:
-  api:
-    build:
-      context: ./api
-      dockerfile: dockerfile
-      target: base
-    restart: always
-    volumes:
-        - ./db:/home/node/app/db
-        - ./api/src:/home/node/app/src
-        - ./api/nodemon.json:/home/node/app/nodemon.json
-        - ./.env:/home/node/app/.env
-    command: npm run dev
-  nginx:
-      image: nginx:latest
-      ports:
-          - "1313:8080"
-      volumes:
-          - ./nginx/lb.dev.conf:/etc/nginx/conf.d/lb.conf
-      restart: always
-      depends_on:
-          - api
-  realestate-fetcher:
-      build:
-          context: ./realestatefetcher
-          dockerfile: dockerfile
-      restart: always
-      volumes:
-          -  ./db:/home/node/app/db
-          - ./.env:/home/node/app/.env
-      command: /home/node/app/start.sh
+    api:
+        build:
+            context: ./api
+            dockerfile: dockerfile
+            target: base
+        restart: always
+        volumes:
+            - ./db:/home/node/app/db
+            - ./api/src:/home/node/app/src
+            - ./api/nodemon.json:/home/node/app/nodemon.json
+            - ./.env:/home/node/app/.env
+        ports:
+            - "8080:3000"
+        command: npm run dev
+    realestate-fetcher:
+        build:
+            context: ./realestatefetcher
+            dockerfile: dockerfile
+        restart: always
+        volumes:
+            -  ./db:/home/node/app/db
+            - ./.env:/home/node/app/.env
+        command: /home/node/app/start.sh
+    fasteignavaktin:
+        build:
+            context: ./fasteignavaktin
+            dockerfile: dockerfile
+            target: base
+        restart: always
+        volumes:
+            - ./fasteignavaktin/src:/app/src
+        ports:
+            - "3000:5173"
+        command: npm run dev
+        depends_on:
+            - api
+    
       
 
