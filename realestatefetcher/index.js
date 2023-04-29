@@ -1,6 +1,7 @@
 import { deleteAllRealEstates, insertZipCode, insertRealEstate, getAllZipCodes, getLatestCreated, deleteAllZipCodes } from "./dbservice.js";
 import { getAllPostalCodes, getRealEstates } from "./graphql.js";
 import Sqlite3Client from './dbclient.js';
+import { zipCodeCoordinates } from "./zip.js";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -37,7 +38,17 @@ async function insertAllZipCodes(client) {
 
     await client.beginTransaction();
     await Promise.all(zipCodes.map(x => {
-        return insertZipCode(client, x);
+        let lat, lon;
+        const coordinates = zipCodeCoordinates.find(zip => x.zip === zip.zip);
+
+        if (coordinates) {
+            lat = coordinates.lat;
+            lon = coordinates.lon;
+        } else {
+            console.log(`No coordinates found for ${x.zip}: ${x.city}`);
+        }
+
+        return insertZipCode(client, x, lat, lon);
     }));
     await client.commitTransaction();
 }

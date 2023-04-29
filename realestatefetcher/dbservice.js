@@ -16,13 +16,15 @@ export async function deleteAllRealEstates(client, zipCode) {
     await client.run(query, params);
 }
 
-export async function insertZipCode(client, zipCode) {
-    const query = 'INSERT INTO ZIPCODE(ZIP, CITY, NEIGHBORHOOD) VALUES($zip, $city, $neighborhood)';
+export async function insertZipCode(client, zipCode, lat, lon) {
+    const query = 'INSERT INTO ZIPCODE(ZIP, CITY, NEIGHBORHOOD, LATITUDE, LONGITUDE) VALUES($zip, $city, $neighborhood, $lat, $lon)';
 
     const params = {
         $zip: zipCode.zip,
         $city: zipCode.city,
         $neighborhood: zipCode.neighborhood,
+        $lat: lat,
+        $lon: lon,
     };
 
     await client.run(query, params);
