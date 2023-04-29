@@ -36,6 +36,7 @@ class Property {
 
     image!: string;
     
+    url!: string;
 }
 
 export default Property;

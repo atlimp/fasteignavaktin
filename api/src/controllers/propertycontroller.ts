@@ -19,11 +19,15 @@ class PropertyController implements IBaseController {
                 id: x.ID,
                 address: x.ADDRESS,
                 price: x.PRICE,
-                zip: x.ZIP,
+                size: x.SIZE,
+                zip: {
+                    zipCode: x.ZIP
+                },
                 image: x.IMAGE,
                 created: x.CREATED,
                 latitude: x.LATITUDE,
                 longitude: x.LONGITUDE,
+                url: `https://www.mbl.is/fasteignir/fasteign/${x.ID}/`
             } as Property;
         });
     }
@@ -47,11 +51,15 @@ class PropertyController implements IBaseController {
                 id: x.ID,
                 address: x.ADDRESS,
                 price: x.PRICE,
-                zip: x.ZIP,
+                size: x.SIZE,
+                zip: {
+                    zipCode: x.ZIP
+                },
                 image: x.IMAGE,
                 created: x.CREATED,
                 latitude: x.LATITUDE,
                 longitude: x.LONGITUDE,
+                url: `https://www.mbl.is/fasteignir/fasteign/${x.ID}/`
             } as Property;
         });
     }
@@ -89,6 +97,7 @@ class PropertyController implements IBaseController {
             latitude: results.LATITUDE,
             longitude: results.LONGITUDE,
             image: results.IMAGE,
+            url: `https://www.mbl.is/fasteignir/fasteign/${results.ID}/`
         } as Property;
 
         
