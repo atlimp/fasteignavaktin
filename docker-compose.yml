@@ -33,7 +33,7 @@ services:
         volumes:
             - ./fasteignavaktin/src:/app/src
         ports:
-            - "3000:5173"
+            - "8000:5173"
         command: npm run dev
         depends_on:
             - api
