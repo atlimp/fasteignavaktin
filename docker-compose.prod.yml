@@ -9,4 +9,6 @@ services:
         build:
             target: production
         restart: always
-        command: node ./index.js
+        command: node ./build/index.js
+        ports:
+            - "3000:3000"

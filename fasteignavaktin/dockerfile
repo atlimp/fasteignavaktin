@@ -10,6 +10,10 @@ COPY . .
 
 FROM base as production
 
+WORKDIR /app
+
+COPY . .
+
 # clean install all dependencies
 RUN npm ci
 
@@ -27,6 +31,3 @@ RUN npm ci --production --ignore-scripts
 
 # remove potential security issues
 RUN npm audit fix
-
-# copy built SvelteKit app to /app
-COPY --from=0 /app/build ./
