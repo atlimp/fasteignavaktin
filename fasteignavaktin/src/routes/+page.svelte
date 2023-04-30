@@ -10,7 +10,7 @@
 
 <div class="flex flex-row m-0">
     <div class="w-1/3 h-screen">
-        <ZipSelector zipCodes={data.zipCodes}/>
+        <!-- <ZipSelector zipCodes={data.zipCodes}/> -->
         <PropertyList properties={data.properties}/>
     </div>
     <PropertyMap properties={data.properties}></PropertyMap>

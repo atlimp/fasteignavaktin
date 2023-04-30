@@ -1,15 +1,14 @@
 <script lang="ts">
     import type { PropertyData } from "@lib/interfaces";
-    import type { LatLngExpression, Map } from 'leaflet';
+    import type { Map } from 'leaflet';
     import { onMount, onDestroy } from "svelte";
     import { browser } from "$app/environment";
 	import PropertyPopup from "./PropertyPopup.svelte";
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
+    import { MAP_INITIAL_BOUNDS } from '@lib/constants';
     
     export let properties;
-    
-    const initialView: LatLngExpression = [63.979810, -22.544866];
     
     let mapElement;
     let map: Map;
@@ -17,12 +16,23 @@
     let mounted = false;
 	let currentMarkersGroup = null;
     
+    let bounds = MAP_INITIAL_BOUNDS;
+
+    if ($page.url.searchParams.has('latMin')
+        && $page.url.searchParams.has('latMax')
+        && $page.url.searchParams.has('lonMin')
+        && $page.url.searchParams.has('lonMax')) {
+            bounds = [
+                [Number($page.url.searchParams.get('latMax')), Number($page.url.searchParams.get('lonMax'))],
+                [Number($page.url.searchParams.get('latMin')), Number($page.url.searchParams.get('lonMin'))],
+            ]
+        }
     
     
     onMount(async () => {
         if (browser) {
             leaflet = await import('leaflet');
-            map = leaflet.map(mapElement).setView(initialView, 13);
+            map = leaflet.map(mapElement).fitBounds(bounds);
 
             leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
