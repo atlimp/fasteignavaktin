@@ -32,6 +32,7 @@ const REALESTATES = gql`
                 imgno
                 id
                 big
+                small
             }
         }
     }`;

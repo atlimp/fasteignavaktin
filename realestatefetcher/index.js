@@ -20,7 +20,7 @@ async function insertRealEstateForPostalCode(client, zipCode, lastCreated) {
             let image = '';
 
             if (realEstate.images && realEstate.images.length > 0) {
-                image = realEstate.images[0].big;
+                image = realEstate.images[0].small;
             }
 
             realEstate.image = image;
