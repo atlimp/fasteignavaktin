@@ -4,7 +4,7 @@ import ZipRouter from './routers/ziprouter';
 import { getConfigOrDefault } from './util/util';
 
 const host: string = getConfigOrDefault('HOST', 'localhost');
-const port: number = getConfigOrDefault('process.env.PORT', 3000, (x: string) => Number(x));
+const port: number = getConfigOrDefault('PORT', 3000, (x: string) => Number(x));
 
 
 const app = new App({

@@ -2,6 +2,10 @@ version: '3.7'
 
 services:
     api:
+        environment:
+            - HOST=0.0.0.0
+            - PORT=3000
+            - DB_FILENAME=/home/node/app/db/fasteignavaktin.db
         build:
             context: ./api
             dockerfile: dockerfile
@@ -16,6 +20,8 @@ services:
             - "8080:3000"
         command: npm run dev
     realestate-fetcher:
+        environment:
+            - DB_FILENAME=/home/node/app/db/fasteignavaktin.db
         build:
             context: ./realestatefetcher
             dockerfile: dockerfile
