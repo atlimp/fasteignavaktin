@@ -10,5 +10,6 @@ services:
             target: production
         restart: always
         command: node ./build/index.js
-        ports:
-            - "3000:3000"
+    nginx:
+        volumes:
+            - ./nginx/lb.conf:/etc/nginx/conf.d/lb.conf

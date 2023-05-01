@@ -16,8 +16,6 @@ services:
             - ./api/src:/home/node/app/src
             - ./api/nodemon.json:/home/node/app/nodemon.json
             - ./.env:/home/node/app/.env
-        ports:
-            - "8080:3000"
         command: npm run dev
     realestate-fetcher:
         environment:
@@ -38,11 +36,18 @@ services:
         restart: always
         volumes:
             - ./fasteignavaktin/src:/app/src
-        ports:
-            - "8000:5173"
         command: npm run dev
-        depends_on:
-            - api
+        ports:
+            - "5173:5173"
+    nginx:
+      image: nginx:latest
+      ports:
+          - "3000:8080"
+      volumes:
+          - ./nginx/lb.dev.conf:/etc/nginx/conf.d/lb.conf
+      depends_on:
+          - fasteignavaktin
+          - api
     
       
 

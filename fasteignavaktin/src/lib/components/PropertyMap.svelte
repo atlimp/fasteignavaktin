@@ -44,7 +44,7 @@
                 $page.url.searchParams.set('latMax', `${latlon.getNorth()}`)
                 $page.url.searchParams.set('lonMin', `${latlon.getWest()}`)
                 $page.url.searchParams.set('lonMax', `${latlon.getEast()}`)
-                goto(`?${$page.url.searchParams.toString()}`);                
+                goto(`?${$page.url.searchParams.toString()}`);
             });
             
             mounted = true;
@@ -115,9 +115,15 @@
         }
     });
 
-</script>
+    const resizeMap = () => {
+        if(map) { 
+            map.invalidateSize();
+        }
+    }
 
-<div class="h-screen w-2/3" bind:this={mapElement} />
+</script>
+<svelte:window on:resize={resizeMap} />
+<div class="h-full w-4/5" bind:this={mapElement} />
 
 <style>
 	@import 'leaflet/dist/leaflet.css';

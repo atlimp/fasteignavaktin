@@ -1,12 +1,18 @@
-import type { PropertyData, LatLonBounds } from '@lib/interfaces';
-import { BASE_API_URL } from '@lib/constants';
+import type { PropertyData } from '@lib/interfaces';
+import { BASE_API_URL, PAGE_SIZE } from '@lib/constants';
+import { hasMoreProperties } from './writeableStore';
 
-export const fetchProperties = async (fetch, bounds) => {
+export const fetchProperties = async (fetch, bounds, pageNo = 1) => {
     const { latMin, latMax, lonMin, lonMax } = bounds;
-    const requestUrl = `${BASE_API_URL}/properties/area?latMin=${latMin}&latMax=${latMax}&lonMin=${lonMin}&lonMax=${lonMax}&limit=100`;
+    const offset = PAGE_SIZE * (pageNo - 1);
+
+    const requestUrl = `${BASE_API_URL}/properties/area?latMin=${latMin}&latMax=${latMax}&lonMin=${lonMin}&lonMax=${lonMax}&limit=${PAGE_SIZE}&offset=${offset}`;
 
     try {
         const data = await (await fetch(requestUrl)).json();
+
+        hasMoreProperties.set(data.length >= PAGE_SIZE);
+
         return data.map(x => {
             return {
                 id: x.id,
