@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
 
-let api_url = 'https://fasteignavaktin.marcher.is';
+let api_url = 'https://fasteignavaktin.marcher.is/api';
 
 if (dev) {
     api_url = 'http://localhost:3000/api';
