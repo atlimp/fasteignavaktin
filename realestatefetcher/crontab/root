@@ -1,2 +1,2 @@
-0 * * * * node /home/node/app/index.js
+*/15 * * * * node /home/node/app/index.js
 0 3 * * * node /home/node/app/index.js --full-sync
