@@ -1,14 +1,46 @@
 <script lang="ts">
-    export let property;
+	import type { PropertyData } from '@lib/interfaces';
+	import { selectedPropertyIdStore } from '@stores/writeableStore';
 
-    const numberFormat = new Intl.NumberFormat();
+	export let property: PropertyData;
+	export let selected;
+	let selectedPropertyId: number;
+
+	const numberFormat = new Intl.NumberFormat();
+
+	selectedPropertyIdStore.subscribe((val) => (selectedPropertyId = val));
+
+	const selectProperty = () => {
+		if (selectedPropertyId === property.id) {
+			selectedPropertyIdStore.set(-1);
+		} else {
+			selectedPropertyIdStore.set(property.id);
+		}
+	};
+
+	const pricePerM2 = Math.round(property.price / property.size);
 </script>
 
-<div class="flex flex-row py-4 px-2 border-2 m-4">
-    <img class="w-1/3" src={property.image} alt="property"/>
-    <div class="mx-4">
-        <h3 class="font-bold">{ property.address }</h3>
-        <div>{ numberFormat.format(property.price) } kr.</div>
-        <div>{ property.size.toFixed(2) } fm</div>
-    </div>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
+	class="py-4 px-2 border-2 m-4 {selected ? 'bg-red-50' : 'bg-blue-50'}"
+	on:click={selectProperty}
+>
+	<div class="flex flex-row">
+		<img class="w-1/3" src={property.image} alt="property" />
+		<div class="mx-4">
+			<a target="_blank" rel="noopener noreferrer" href={property.url} class="font-bold"
+				>{property.address}</a
+			>
+			<div>{numberFormat.format(property.price)} kr.</div>
+			<div>{property.size.toFixed(2)} fm</div>
+			<div>{numberFormat.format(pricePerM2)} kr/m²</div>
+		</div>
+	</div>
+	{#if selected}
+		<div class="h-64 overflow-y-scroll py-4">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			{@html property.description}
+		</div>
+	{/if}
 </div>

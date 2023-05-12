@@ -1,6 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 
-import type { Zip } from "@lib/interfaces";
+import type { Zip } from '@lib/interfaces';
 
 // for information about these interfaces
 declare global {
