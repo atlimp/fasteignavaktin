@@ -31,11 +31,12 @@ export async function insertZipCode(client, zipCode, lat, lon) {
 }
 
 export async function insertRealEstate(client, realEstate) {
-    const query = 'INSERT INTO REALESTATE(ID, PRICE, REALESTATEVALUE, FIREINSVALUE, CONSTRUCTIONYEAR, ADDRESS, DESCRIPTION, ZIP, ROOMS, BATHROOMS, BEDROOMS, TYPE, CREATED, SIZE, LATITUDE, LONGITUDE, IMAGE) VALUES($id, $price, $realestatevalue, $fireinsvalue, $constryear, $address, $description, $zip, $rooms, $bathrooms, $bedrooms, $type, $created, $size, $lat, $lon, $img)';
+    const query = 'INSERT INTO REALESTATE(ID, PRICE, PRICEPERSQMTR, REALESTATEVALUE, FIREINSVALUE, CONSTRUCTIONYEAR, ADDRESS, DESCRIPTION, ZIP, ROOMS, BATHROOMS, BEDROOMS, TYPE, CREATED, SIZE, LATITUDE, LONGITUDE, IMAGE) VALUES($id, $price, $pricePerSqMtr, $realestatevalue, $fireinsvalue, $constryear, $address, $description, $zip, $rooms, $bathrooms, $bedrooms, $type, $created, $size, $lat, $lon, $img)';
 
     const params = {
         $id: realEstate.id,
         $price: realEstate.price,
+        $pricePerSqMtr: realEstate.price / (realEstate.size + 0.0000000001),  //Avoid divide by zero
         $realestatevalue: realEstate.realestatevalue,
         $fireinsvalue: realEstate.fireinsvalue,
         $constryear: realEstate.constryear,

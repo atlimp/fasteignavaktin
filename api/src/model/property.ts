@@ -6,6 +6,8 @@ class Property {
 
     price!: number;
 
+    pricePerSqMtr: number;
+
     realEstateValue!: number;
 
     fireInsuranceValue!: number;

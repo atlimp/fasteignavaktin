@@ -1,16 +1,36 @@
-import { IBaseController } from '../interfaces/interfaces';
+import { IBaseController, OrderBy } from '../interfaces/interfaces';
 import DatabaseService from '../services/databaseservice';
 import Property from '../model/property';
-import { GET_PROPERTIES_BY_AREA, GET_PROPERTIES_BY_ZIP, GET_PROPERTY } from '../db/queries';
+import { GET_PROPERTY } from '../db/queries';
 import NotFoundException from '../exceptions/notfoundexception';
 import Zip from '../model/zip';
+import { QueryBuilder } from '../util/querybuilder';
+import { AndOrNone, Order, OrderByCols, SQLOperator } from '../model/enums';
 
 class PropertyController implements IBaseController {
 
-    async getPropertiesByZip(zip: string, offset: number, limit: number): Promise<Property[]> {
+    async getPropertiesByZip(zip: string, offset: number, limit: number, orderBy: OrderBy): Promise<Property[]> {
         const db = new DatabaseService();
 
-        const results = await db.get(GET_PROPERTIES_BY_ZIP, { $zip: zip, $offset: offset, $limit: limit });
+        const query = new QueryBuilder()
+            .from('REALESTATE')
+            .select('ID')
+            .select('ADDRESS')
+            .select('PRICE')
+            .select('PRICEPERSQMTR')
+            .select('ZIP')
+            .select('IMAGE')
+            .select('CREATED')
+            .select('LATITUDE')
+            .select('LONGITUDE')
+            .select('SIZE')
+            .where('ZIP', SQLOperator.eq, zip, AndOrNone.None)
+            .orderBy(orderBy)
+            .limit(limit)
+            .offset(offset)
+            .build();
+
+        const results = await db.get(query.query as string, query.params);
 
         db.close();
 
@@ -19,6 +39,7 @@ class PropertyController implements IBaseController {
                 id: x.ID,
                 address: x.ADDRESS,
                 price: x.PRICE,
+                pricePerSqMtr: x.PRICEPERSQMTR,
                 size: x.SIZE,
                 zip: {
                     zipCode: x.ZIP
@@ -32,17 +53,31 @@ class PropertyController implements IBaseController {
         });
     }
 
-    async getPropertiesByArea(latMin: number, latMax: number, lonMin: number, lonMax: number, offset: number, limit: number): Promise<Property[]> {
+    async getPropertiesByArea(latMin: number, latMax: number, lonMin: number, lonMax: number, offset: number, limit: number, orderBy: OrderBy): Promise<Property[]> {
         const db = new DatabaseService();
 
-        const results = await db.get(GET_PROPERTIES_BY_AREA, { 
-            $latMin: latMin,
-            $latMax: latMax,
-            $lonMin: lonMin,
-            $lonMax: lonMax,
-            $offset: offset,
-            $limit: limit,
-        });
+        const query = new QueryBuilder()
+            .from('REALESTATE')
+            .select('ID')
+            .select('ADDRESS')
+            .select('PRICE')
+            .select('PRICEPERSQMTR')
+            .select('ZIP')
+            .select('IMAGE')
+            .select('CREATED')
+            .select('LATITUDE')
+            .select('LONGITUDE')
+            .select('SIZE')
+            .where('LATITUDE', SQLOperator.gt, latMin, AndOrNone.And)
+            .where('LATITUDE', SQLOperator.lt, latMax, AndOrNone.And)
+            .where('LONGITUDE', SQLOperator.gt, lonMin, AndOrNone.And)
+            .where('LONGITUDE', SQLOperator.lt, lonMax, AndOrNone.None)
+            .orderBy(orderBy)
+            .limit(limit)
+            .offset(offset)
+            .build();
+
+        const results = await db.get(query.query as string, query.params);
 
         db.close();
 
@@ -51,6 +86,7 @@ class PropertyController implements IBaseController {
                 id: x.ID,
                 address: x.ADDRESS,
                 price: x.PRICE,
+                pricePerSqMtr: x.PRICEPERSQMTR,
                 size: x.SIZE,
                 zip: {
                     zipCode: x.ZIP
@@ -82,6 +118,7 @@ class PropertyController implements IBaseController {
         return {
             id: results.ID,
             price: results.PRICE,
+            pricePerSqMtr: results.PRICEPERSQMTR,
             realEstateValue: results.REALESTATEVALUE,
             fireInsuranceValue: results.FIREINSVALUE,
             constructionYear: results.CONSTRUCTIONYEAR,
