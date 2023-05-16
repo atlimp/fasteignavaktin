@@ -14,13 +14,18 @@ export const load = async ({ fetch, url }): Promise<PageData> => {
 		lonMax: Number(url.searchParams.get('lonMax'))
 	};
 
+	const orderByParams = {
+		orderByCol: url.searchParams.get('orderBy'),
+		asc_desc: url.searchParams.get('asc_desc')
+	}
+
 	if (!(bounds.latMin || bounds.latMax || bounds.lonMin || bounds.lonMax)) {
 		bounds.latMin = MAP_INITIAL_BOUNDS[1][0];
 		bounds.latMax = MAP_INITIAL_BOUNDS[0][0];
 		bounds.lonMin = MAP_INITIAL_BOUNDS[1][1];
 		bounds.lonMax = MAP_INITIAL_BOUNDS[0][1];
 	}
-	const properties = await fetchProperties(fetch, bounds);
+	const properties = await fetchProperties(fetch, bounds, orderByParams);
 
 	return {
 		properties: properties

@@ -2,11 +2,26 @@ import type { PropertyData } from '@lib/interfaces';
 import { BASE_API_URL, PAGE_SIZE } from '@lib/constants';
 import { hasMoreProperties } from './writeableStore';
 
-export const fetchProperties = async (fetch, bounds, pageNo = 1) => {
+export const fetchProperties = async (fetch, bounds, orderByParams, pageNo = 1) => {
 	const { latMin, latMax, lonMin, lonMax } = bounds;
+	const { orderByCol, asc_desc } = orderByParams;
 	const offset = PAGE_SIZE * (pageNo - 1);
 
-	const requestUrl = `${BASE_API_URL}/properties/area?latMin=${latMin}&latMax=${latMax}&lonMin=${lonMin}&lonMax=${lonMax}&limit=${PAGE_SIZE}&offset=${offset}`;
+	const requestUrl = new URL('/api/properties/area', BASE_API_URL);
+	requestUrl.searchParams.set('latMin', latMin);
+	requestUrl.searchParams.set('latMax', latMax);
+	requestUrl.searchParams.set('lonMin', lonMin);
+	requestUrl.searchParams.set('lonMax', lonMax);
+	requestUrl.searchParams.set('limit', `${PAGE_SIZE}`);
+	requestUrl.searchParams.set('offset', `${offset}`);
+
+	if (orderByCol) {
+		requestUrl.searchParams.set('orderBy', orderByCol);
+	}
+
+	if (asc_desc) {
+		requestUrl.searchParams.set('asc_desc', asc_desc);
+	}
 
 	try {
 		const data = await (await fetch(requestUrl)).json();
@@ -34,7 +49,7 @@ export const fetchProperties = async (fetch, bounds, pageNo = 1) => {
 };
 
 export const fetchProperty = async (fetch, id) => {
-	const requestUrl = `${BASE_API_URL}/properties/${id}`;
+	const requestUrl = new URL(`/api/properties/${id}`, BASE_API_URL);
 
 	try {
 		const response = await fetch(requestUrl);

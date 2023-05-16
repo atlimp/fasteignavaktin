@@ -21,6 +21,11 @@
 			lonMax: Number($page.url.searchParams.get('lonMax'))
 		};
 
+		const orderByParams = {
+			orderByCol: $page.url.searchParams.get('orderBy'),
+			asc_desc: $page.url.searchParams.get('asc_desc')
+		}
+
 		if (!(bounds.latMin || bounds.latMax || bounds.lonMin || bounds.lonMax)) {
 			bounds.latMin = MAP_INITIAL_BOUNDS[1][0];
 			bounds.latMax = MAP_INITIAL_BOUNDS[0][0];
@@ -28,7 +33,7 @@
 			bounds.lonMax = MAP_INITIAL_BOUNDS[0][1];
 		}
 
-		const newProperties = await fetchProperties(fetch, bounds, pageNo);
+		const newProperties = await fetchProperties(fetch, bounds, orderByParams, pageNo);
 
 		data.properties = data.properties.concat(newProperties);
 	};

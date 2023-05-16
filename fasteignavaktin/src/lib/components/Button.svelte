@@ -3,11 +3,7 @@
 
 	export let onClick;
 	export let buttonText;
-	let disabled;
-
-	hasMoreProperties.subscribe((val) => {
-		disabled = !val;
-	});
+	export let disabled;
 </script>
 
 <button
