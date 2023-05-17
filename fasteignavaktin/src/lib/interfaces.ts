@@ -27,10 +27,10 @@ export interface PropertyData {
 }
 
 export interface SearchParams {
-	latMin: number;
-	latMax: number;
-	lonMax: number;
-	lonMin: number;
+	latMin: string;
+	latMax: string;
+	lonMax: string;
+	lonMin: string;
 	pageNo?: number;
 	orderBy: string;
 	asc_desc: string;

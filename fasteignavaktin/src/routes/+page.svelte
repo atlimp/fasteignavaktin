@@ -12,13 +12,13 @@
 
 	const fetchMore = async (pageNo: number) => {
 		const searchParams = {
-			latMin: Number($page.url.searchParams.get('latMin')),
-			latMax: Number($page.url.searchParams.get('latMax')),
-			lonMin: Number($page.url.searchParams.get('lonMin')),
-			lonMax: Number($page.url.searchParams.get('lonMax')),
+			latMin: $page.url.searchParams.get('latMin') ?? undefined,
+			latMax: $page.url.searchParams.get('latMax') ?? undefined,
+			lonMin: $page.url.searchParams.get('lonMin') ?? undefined,
+			lonMax: $page.url.searchParams.get('lonMax') ?? undefined,
 			pageNo,
-			orderBy: $page.url.searchParams.get('orderBy'),
-			asc_desc: $page.url.searchParams.get('asc_desc')
+			orderBy: $page.url.searchParams.get('orderBy') ?? undefined,
+			asc_desc: $page.url.searchParams.get('asc_desc') ?? undefined,
 		};
 
 		const newProperties = await fetchProperties(fetch, searchParams);

@@ -8,12 +8,12 @@ export const load = async ({ fetch, url }): Promise<PageData> => {
 	selectedPropertyIdStore.set(-1);
 
 	const searchParams: SearchParams = {
-		latMin: Number(url.searchParams.get('latMin')),
-		latMax: Number(url.searchParams.get('latMax')),
-		lonMin: Number(url.searchParams.get('lonMin')),
-		lonMax: Number(url.searchParams.get('lonMax')),
-		orderBy: url.searchParams.get('orderBy'),
-		asc_desc: url.searchParams.get('asc_desc')
+		latMin: url.searchParams.get('latMin') ?? undefined,
+		latMax: url.searchParams.get('latMax') ?? undefined,
+		lonMin: url.searchParams.get('lonMin') ?? undefined,
+		lonMax: url.searchParams.get('lonMax') ?? undefined,
+		orderBy: url.searchParams.get('orderBy') ?? undefined,
+		asc_desc: url.searchParams.get('asc_desc') ?? undefined
 	};
 
 	const properties = await fetchProperties(fetch, searchParams);
