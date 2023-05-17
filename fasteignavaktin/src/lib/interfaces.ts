@@ -7,6 +7,7 @@ export interface ZipData {
 export interface PropertyData {
 	id: number;
 	price: number;
+	pricePerSqMtr: number;
 	realEstateValue: number;
 	fireInsuranceValue: number;
 	constructionYear: number;
@@ -25,9 +26,12 @@ export interface PropertyData {
 	url: string;
 }
 
-export interface LatLonBounds {
+export interface SearchParams {
 	latMin: number;
 	latMax: number;
-	lonMin: number;
 	lonMax: number;
+	lonMin: number;
+	pageNo?: number;
+	orderBy: string;
+	asc_desc: string;
 }

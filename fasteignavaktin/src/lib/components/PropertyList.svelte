@@ -1,14 +1,17 @@
 <script lang="ts">
+	import { fetchProperty } from '@stores/propertyStore';
 	import Property from './Property.svelte';
 	import { selectedPropertyIdStore } from '@stores/writeableStore';
 
 	export let properties;
-	export let selectedProperty;
 
 	let selectedPropertyId;
+	let selectedProperty;
 
-	selectedPropertyIdStore.subscribe((val) => {
+	selectedPropertyIdStore.subscribe(async (val) => {
 		selectedPropertyId = val;
+
+		selectedProperty = await fetchProperty(fetch, val);
 	});
 </script>
 

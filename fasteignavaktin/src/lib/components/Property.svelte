@@ -17,8 +17,6 @@
 			selectedPropertyIdStore.set(property.id);
 		}
 	};
-
-	const pricePerM2 = Math.round(property.price / property.size);
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -34,7 +32,7 @@
 			>
 			<div>{numberFormat.format(property.price)} kr.</div>
 			<div>{property.size.toFixed(2)} fm</div>
-			<div>{numberFormat.format(pricePerM2)} kr/m²</div>
+			<div>{numberFormat.format(property.pricePerSqMtr)} kr/m²</div>
 		</div>
 	</div>
 	{#if selected}

@@ -1,14 +1,17 @@
 <script lang="ts">
 	import Icon from '@lib/images/marker.png';
 	import Button from './Button.svelte';
-	import { hasMoreProperties } from '@stores/writeableStore';
+	import { hasMoreProperties, pageNo } from '@stores/writeableStore';
 	import BurgerMenu from './BurgerMenu.svelte';
-	export let onButtonClick;
 	let disabled;
 
 	hasMoreProperties.subscribe((val) => {
 		disabled = !val;
 	});
+
+	const onButtonClick = () => {
+		pageNo.update((x) => x + 1);
+	};
 </script>
 
 <div class="row-span-1 grid grid-cols-6">

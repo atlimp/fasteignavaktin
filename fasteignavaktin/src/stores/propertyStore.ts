@@ -1,28 +1,30 @@
-import type { PropertyData } from '@lib/interfaces';
-import { BASE_API_URL, PAGE_SIZE } from '@lib/constants';
+import type { PropertyData, SearchParams } from '@lib/interfaces';
+import { BASE_API_URL, PAGE_SIZE, MAP_INITIAL_BOUNDS } from '@lib/constants';
 import { hasMoreProperties } from './writeableStore';
 
-export const fetchProperties = async (fetch, bounds, orderByParams, pageNo = 1) => {
-	const { latMin, latMax, lonMin, lonMax } = bounds;
+export const fetchProperties = async (fetch, searchParams: SearchParams) => {
+	const {
+		latMin = MAP_INITIAL_BOUNDS[1][0],
+		latMax = MAP_INITIAL_BOUNDS[0][0],
+		lonMin = MAP_INITIAL_BOUNDS[1][1],
+		lonMax = MAP_INITIAL_BOUNDS[0][1],
+		pageNo = 1,
+		orderBy = '',
+		asc_desc = ''
+	} = searchParams;
 
-	let orderByCol, asc_desc;
-
-	if (orderByParams) {
-		orderByCol = orderByParams.orderByCol;
-		asc_desc = orderByParams.asc_desc;
-	}
 	const offset = PAGE_SIZE * (pageNo - 1);
 
 	const requestUrl = new URL('/api/properties/area', BASE_API_URL);
-	requestUrl.searchParams.set('latMin', latMin);
-	requestUrl.searchParams.set('latMax', latMax);
-	requestUrl.searchParams.set('lonMin', lonMin);
-	requestUrl.searchParams.set('lonMax', lonMax);
+	requestUrl.searchParams.set('latMin', `${latMin}`);
+	requestUrl.searchParams.set('latMax', `${latMax}`);
+	requestUrl.searchParams.set('lonMin', `${lonMin}`);
+	requestUrl.searchParams.set('lonMax', `${lonMax}`);
 	requestUrl.searchParams.set('limit', `${PAGE_SIZE}`);
 	requestUrl.searchParams.set('offset', `${offset}`);
 
-	if (orderByCol) {
-		requestUrl.searchParams.set('orderBy', orderByCol);
+	if (orderBy) {
+		requestUrl.searchParams.set('orderBy', orderBy);
 	}
 
 	if (asc_desc) {
@@ -39,6 +41,7 @@ export const fetchProperties = async (fetch, bounds, orderByParams, pageNo = 1) 
 				id: x.id,
 				address: x.address,
 				price: x.price,
+				pricePerSqMtr: x.pricePerSqMtr,
 				size: x.size,
 				image: x.image,
 				created: x.created,
@@ -66,6 +69,7 @@ export const fetchProperty = async (fetch, id) => {
 			return {
 				id: data.id,
 				price: data.price,
+				pricePerSqMtr: data.pricePerSqMtr,
 				realEstateValue: data.realEstateValue,
 				fireInsuranceValue: data.fireInsuranceValue,
 				constructionYear: data.constructionYear,
