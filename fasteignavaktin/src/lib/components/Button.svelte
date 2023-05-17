@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { hasMoreProperties } from '@stores/writeableStore';
-
 	export let onClick;
 	export let buttonText;
 	export let disabled;

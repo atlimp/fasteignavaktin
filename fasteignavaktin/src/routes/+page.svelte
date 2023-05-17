@@ -24,7 +24,7 @@
 		const orderByParams = {
 			orderByCol: $page.url.searchParams.get('orderBy'),
 			asc_desc: $page.url.searchParams.get('asc_desc')
-		}
+		};
 
 		if (!(bounds.latMin || bounds.latMax || bounds.lonMin || bounds.lonMax)) {
 			bounds.latMin = MAP_INITIAL_BOUNDS[1][0];

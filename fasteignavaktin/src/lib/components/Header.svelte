@@ -13,8 +13,8 @@
 
 <div class="row-span-1 grid grid-cols-6">
 	<div class="flex">
-		<BurgerMenu></BurgerMenu>
-		<Button onClick={onButtonClick} buttonText="Sækja fleiri" disabled={disabled} />
+		<BurgerMenu />
+		<Button onClick={onButtonClick} buttonText="Sækja fleiri" {disabled} />
 	</div>
 	<div class="w-full m-auto col-span-4 grid grid-cols-6">
 		<h1 class="uppercase text-6xl col-span-3 tracking-widest col-start-3">Fasteignavaktin</h1>

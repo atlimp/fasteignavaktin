@@ -17,7 +17,7 @@ export const load = async ({ fetch, url }): Promise<PageData> => {
 	const orderByParams = {
 		orderByCol: url.searchParams.get('orderBy'),
 		asc_desc: url.searchParams.get('asc_desc')
-	}
+	};
 
 	if (!(bounds.latMin || bounds.latMax || bounds.lonMin || bounds.lonMax)) {
 		bounds.latMin = MAP_INITIAL_BOUNDS[1][0];
