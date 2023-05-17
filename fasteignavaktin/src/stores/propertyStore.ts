@@ -4,7 +4,7 @@ import { hasMoreProperties } from './writeableStore';
 
 export const fetchProperties = async (fetch, bounds, orderByParams, pageNo = 1) => {
 	const { latMin, latMax, lonMin, lonMax } = bounds;
-	const { orderByCol, asc_desc } = orderByParams;
+	const { orderByCol = null, asc_desc = null } = orderByParams;
 	const offset = PAGE_SIZE * (pageNo - 1);
 
 	const requestUrl = new URL('/api/properties/area', BASE_API_URL);
