@@ -28,17 +28,6 @@ services:
             -  ./db:/home/node/app/db
             - ./.env:/home/node/app/.env
         command: /home/node/app/start.sh
-    fasteignavaktin:
-        build:
-            context: ./fasteignavaktin
-            dockerfile: dockerfile
-            target: base
-        restart: always
-        volumes:
-            - ./fasteignavaktin/src:/app/src
-        command: npm run dev
-        ports:
-            - "5173:5173"
     nginx:
       image: nginx:latest
       ports:
@@ -46,8 +35,4 @@ services:
       volumes:
           - ./nginx/lb.dev.conf:/etc/nginx/conf.d/lb.conf
       depends_on:
-          - fasteignavaktin
           - api
-    
-      
-

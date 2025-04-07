@@ -5,11 +5,6 @@ services:
         build:
             target: production
         command: node ./build/server.js
-    fasteignavaktin:
-        build:
-            target: production
-        restart: always
-        command: node ./build/index.js
     nginx:
         volumes:
             - ./nginx/lb.conf:/etc/nginx/conf.d/lb.conf
