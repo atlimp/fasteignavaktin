@@ -17,17 +17,6 @@ services:
             - ./api/nodemon.json:/home/node/app/nodemon.json
             - ./.env:/home/node/app/.env
         command: npm run dev
-    realestate-fetcher:
-        environment:
-            - DB_FILENAME=/home/node/app/db/fasteignavaktin.db
-        build:
-            context: ./realestatefetcher
-            dockerfile: dockerfile
-        restart: always
-        volumes:
-            -  ./db:/home/node/app/db
-            - ./.env:/home/node/app/.env
-        command: /home/node/app/start.sh
     nginx:
       image: nginx:latest
       ports:
